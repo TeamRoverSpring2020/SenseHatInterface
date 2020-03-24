@@ -3,7 +3,7 @@ package ckb78.sensehat;
 import okio.Okio;
 import java.io.IOException;
 
-public class PythonInterface implements SensorAdapter {
+public class PythonInterface implements SensorInterface {
     @Override
     public double getPressure() {
         String rawPressure = callSenseHatGetter("get_pressure");
@@ -32,16 +32,16 @@ public class PythonInterface implements SensorAdapter {
         return execPythonCode(String.format("print sense.%s()", getterName));
     }
 
-    private String execPythonCode(String line) {
-        //String code = "from sense_hat import SenseHat\n" +
-        String code = "from sense_emu import SenseHat\n" +
+    private String execPythonCode(String command) {
+        //String pythonCode = "from sense_hat import SenseHat\n" +
+        String pythonCode = "from sense_emu import SenseHat\n" +
                 "sense = SenseHat()\n" +
                 "\n" +
-                line;
+                command;
 
         try {
             Process process = Runtime.getRuntime().exec(new String[]{
-                    "python", "-c", code
+                    "python", "-c", pythonCode
             });
 
             int exitCode = process.waitFor();

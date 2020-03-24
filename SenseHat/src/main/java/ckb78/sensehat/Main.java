@@ -2,12 +2,17 @@ package ckb78.sensehat;
 
 public class Main {
 
+
     public static void main(String[] args) {
 
-        SenseHat senseHat = new SenseHat();
-        System.out.println("Temperature is " + senseHat.getTemperature());;
-        System.out.println("Humidity is " + senseHat.getHumidity());
-        System.out.println("Pressure is " + senseHat.getPressure());
+        SenseObjekt sensObj = new SenseObjekt();
+        // Skriver ut data fra SenseObjektet
+        System.out.println("Nåværende temperatur        :  " + sensObj.getTemp() + "C.");;
+        System.out.println("Nåværende luftfuktighet     :  " + sensObj.getFukt() + "%.");
+        System.out.println("Nåværende atmosfærisk trykk : " + sensObj.getTrykk() + "mBar.");
 
+        // Kaller returnSenseObjekt()-metoden i SenseHatMethods, og får et oppdatert SenseObjekt tilbake:
+        System.out.print(SenseHatMethods.returnSenseObjekt());
     }
+
 }

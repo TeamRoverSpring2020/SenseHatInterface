@@ -1,6 +1,6 @@
 package ckb78.sensehat;
 
-public interface SensorAdapter {
+public interface SensorInterface {
     double getPressure();
     double getHumidity();
     double getTemperatureFromPressure();
